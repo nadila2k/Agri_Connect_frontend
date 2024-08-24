@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import classes from "./Header.module.css";
 
 const  Header = () => {
@@ -9,19 +10,19 @@ const  Header = () => {
       <nav>
         <ul>
           <li>
-            <button>Home</button>
+            <NavLink to="/" className={classes.link}>Home</NavLink>
           </li>
           <li>
-            <button>About</button>
+            <NavLink to="/about" className={classes.link}>About</NavLink>
           </li>
           <li>
-            <button>Products</button>
+          <NavLink to="/products" className={classes.link}>Products</NavLink>
           </li>
           <li>
-            <button>Blog</button>
+          <NavLink to="/blog" className={classes.link}>Blog</NavLink>
           </li>
           <li>
-            <button>Contact</button>
+          <NavLink to="/contact" className={classes.link}>Contact</NavLink>
           </li>
           <li>
             <button>Login</button>
