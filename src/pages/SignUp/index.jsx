@@ -12,12 +12,39 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import {districts} from './../../config/data'
+import { districts } from "./../../config/data";
 
 const SignUp = () => {
-  
-  const [role, setRole] = useState("");
-  const [district, setDistrict] = useState("");
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    role: "1",
+  });
+
+  const handleInputChange = (e) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSignUpSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:5001/api/v1/auth/signUp", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(userData),
+      });
+      const data = await response.json()
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -42,6 +69,7 @@ const SignUp = () => {
             name="firstName"
             autoComplete="given-name"
             autoFocus
+            onChange={(e) => handleInputChange(e)}
           />
           <TextField
             margin="normal"
@@ -51,6 +79,7 @@ const SignUp = () => {
             label="Last Name"
             name="lastName"
             autoComplete="family-name"
+            onChange={(e) => handleInputChange(e)}
           />
           <TextField
             margin="normal"
@@ -60,12 +89,14 @@ const SignUp = () => {
             label="Email"
             name="email"
             autoComplete="email"
+            onChange={(e) => handleInputChange(e)}
           />
-          <TextField
+          {/* <TextField
             margin="normal"
             required
             fullWidth
             id="district"
+            name="district"
             select
             label="District"
             value={district}
@@ -76,8 +107,8 @@ const SignUp = () => {
                 {district}
               </MenuItem>
             ))}
-          </TextField>
-          <TextField
+          </TextField> */}
+          {/* <TextField
             margin="normal"
             required
             fullWidth
@@ -85,24 +116,17 @@ const SignUp = () => {
             label="Telephone number"
             name="phoneNumber"
             autoComplete="tel"
-          />
+          /> */}
           <FormControl component="fieldset" sx={{ mt: 2 }}>
             <FormLabel component="legend">User Role</FormLabel>
             <RadioGroup
               row
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
+              value={userData.role}
+              name="role"
+              onChange={(e) => handleInputChange(e)}
             >
-              <FormControlLabel
-                value="1"
-                control={<Radio />}
-                label="Farmer"
-              />
-              <FormControlLabel
-                value="2"
-                control={<Radio />}
-                label="Vendor"
-              />
+              <FormControlLabel value="1" control={<Radio />} label="Farmer" />
+              <FormControlLabel value="2" control={<Radio />} label="Vendor" />
             </RadioGroup>
           </FormControl>
           <TextField
@@ -114,12 +138,14 @@ const SignUp = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => handleInputChange(e)}
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2, bgcolor: "red" }}
+            onClick={handleSignUpSubmit}
           >
             SIGN UP
           </Button>
