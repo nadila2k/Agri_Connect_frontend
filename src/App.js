@@ -5,6 +5,8 @@ import AboutUs from "./pages/AboutUs";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Products from "./pages/Products";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -12,13 +14,21 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
 
+          {/* Guest Routes */}
           <Route index path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/products" element={<Products />} />
 
+          {/* SignIn SignUp */}
+          <Route path="/sign-in" element={<SignIn/>} />
+          <Route path="/sign-up" element={<SignUp/>} />
+
           {/* Authenticate Routes */}
+
+
+          
 
         </Route>
       </Routes>
