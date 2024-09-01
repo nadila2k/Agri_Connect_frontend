@@ -1,9 +1,5 @@
 import axios from "axios";
 
-
-console.log("xxxxxxxxxxxxxxx ", process.env.REACT_APP_SERVER_API_PATH);
-
-
 const apiClient = axios.create({
   baseURL: process.env.REACT_APP_SERVER_API_PATH,
 });
