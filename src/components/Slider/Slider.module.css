@@ -33,6 +33,7 @@
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   font-family: 'Roboto', sans-serif;
   animation: fadeInDown 1s ease-in-out;
+  color: #ff8c00;
 }
 
 .slider p {

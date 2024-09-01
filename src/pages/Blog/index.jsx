@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import BlogComponent from '../../components/BlogArticle/BlogArticle.tsx';
 
 function Blog() {
   return (
-    <div>Blog</div>
-  )
+    <div>
+      <BlogComponent />
+    </div>
+  );
 }
 
-export default Blog
+export default Blog;

@@ -1,28 +1,16 @@
-import classes from './Products.module.css'
+import React from 'react';
+import classes from './Products.module.css';
+import ProductComponent from '../../components/Product/ProductComponent';
 
 const Products = () => {
   return (
     <section className={classes.products}>
-      <div className={classes['product-card']}>
-        <div className={classes['product-info']}>
-          <h3>Organic Vegetables</h3>
-          <p>
-            Discover the freshest, nutrient-rich vegetables grown naturally
-            without chemicals.
-          </p>
-        </div>
+      <div className={classes['product-component']}>
+        <ProductComponent />
       </div>
-      <div className={classes['product-card']}>
-        <div className={classes['product-info']}>
-          <h3>Organic Fruits</h3>
-          <p>
-            Enjoy a variety of succulent, organic fruits picked at their peak
-            for maximum flavor.
-          </p>
-        </div>
-      </div>
+      
     </section>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

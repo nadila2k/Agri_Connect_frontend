@@ -7,6 +7,8 @@ import Contact from "./pages/Contact";
 import Products from "./pages/Products";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import AdminDashboard from "./pages/AdminDashbord";  
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp/>} />
 
           {/* Authenticate Routes */}
+          <Route path="/admin" element={<AdminDashboard />} /> 
 
 
           
