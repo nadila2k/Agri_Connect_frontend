@@ -59,7 +59,7 @@ const SignIn = () => {
     
     dispatch(signIn(payload))
     
-
+    navigate("/products");
     // try {
     //   console.log(payload);
     //   const response = await fetch("http://localhost:5001/api/v1/auth/signin", {
