@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -22,7 +22,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import SignUp from "../SignUp/index.jsx";
 import { signIn } from "../../features/thunks/authThunk.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../features/slices/authSlice.js";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,6 +38,17 @@ const SignIn = () => {
     message: "",
     severity: "",
   });
+
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    if(user.role === 0) {
+      console.log("admin");
+      
+    }else if(user.role === 1) {
+      console.log("farmer");
+    }
+  }, [user])
 
   const handleSignInSubmit = async (event) => {
     event.preventDefault();
@@ -59,7 +71,7 @@ const SignIn = () => {
     
     dispatch(signIn(payload))
     
-    navigate("/products");
+    // navigate("/admin");
     // try {
     //   console.log(payload);
     //   const response = await fetch("http://localhost:5001/api/v1/auth/signin", {

@@ -25,7 +25,7 @@ function App() {
 
           {/* Protected Routes */}
           <Route element={<AuthRoutes />}>
-            <Route path="/products" element={<Products />} />
+            <Route path="/admin" element={<AdminDashboard />} /> 
           </Route>
 
           {/* SignIn SignUp */}
@@ -33,7 +33,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp/>} />
 
           {/* Authenticate Routes */}
-          <Route path="/admin" element={<AdminDashboard />} /> 
+          
 
 
           
