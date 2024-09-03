@@ -8,6 +8,7 @@ import Products from "./pages/Products";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import AdminDashboard from "./pages/AdminDashbord";  
+import AuthRoutes from "./Routes/AuthRoutes";
 
 
 function App() {
@@ -21,14 +22,18 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<Products />} />
+
+          {/* Protected Routes */}
+          <Route element={<AuthRoutes />}>
+            <Route path="/admin" element={<AdminDashboard />} /> 
+          </Route>
 
           {/* SignIn SignUp */}
           <Route path="/sign-in" element={<SignIn/>} />
           <Route path="/sign-up" element={<SignUp/>} />
 
           {/* Authenticate Routes */}
-          <Route path="/admin" element={<AdminDashboard />} /> 
+          
 
 
           
