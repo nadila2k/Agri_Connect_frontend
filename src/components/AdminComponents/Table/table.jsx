@@ -16,7 +16,7 @@ const Table = ({ columns, data }) => {
                 {data.map((row, rowIndex) => (
                     <tr key={rowIndex}>
                         <td>{row.id}</td>
-                        <td>{row.cropName}</td>
+                        <td>{row.name}</td>
                         <td>
                             <button className="crop-button update-crop-button">
                                 <FaEdit className="button-icon" /> Update

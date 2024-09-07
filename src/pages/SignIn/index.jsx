@@ -43,10 +43,10 @@ const SignIn = () => {
 
   useEffect(() => {
     if(user.role === 0) {
-      console.log("admin");
+      navigate("/admin");
       
     }else if(user.role === 1) {
-      console.log("farmer");
+      navigate("/admin");
     }
   }, [user])
 
@@ -71,7 +71,7 @@ const SignIn = () => {
     
     dispatch(signIn(payload))
     
-    // navigate("/admin");
+    
     // try {
     //   console.log(payload);
     //   const response = await fetch("http://localhost:5001/api/v1/auth/signin", {
