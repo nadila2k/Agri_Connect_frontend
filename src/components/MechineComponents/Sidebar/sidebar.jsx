@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaSeedling, FaBlog, FaChartBar } from 'react-icons/fa';
-import { GiCorn } from 'react-icons/gi';
-import ManageCrops from '../ManageCrops/managecrops'; 
-import CropStatistics from '../CropStatics/cropstatistics';
-import BlogManager from '../ManageBlog/blogs';
+import { FaListAlt,FaUserCircle} from 'react-icons/fa';
+import Listings from '../MechineListings/listings';
 import './Styles_Sidebar.css';
 
 const Sidebar = () => {
@@ -12,10 +9,8 @@ const Sidebar = () => {
   const sidebarRef = useRef(null);
 
   const tabs = [
-    { name: 'Analytics', icon: <FaChartBar /> },
-    { name: 'Manage Crops', icon: <FaSeedling />, content: <ManageCrops /> },
-    { name: 'Crop Statistics', icon: <GiCorn />, content:<CropStatistics/> },
-    { name: 'Edit Blogs', icon: <FaBlog />, content: < BlogManager/> },
+    { name: 'Manage Items', icon: <FaListAlt />, content:<Listings/>},
+    { name: 'Manage Profile', icon: < FaUserCircle /> },
     
   ];
 

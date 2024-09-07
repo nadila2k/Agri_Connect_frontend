@@ -9,6 +9,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import AdminDashboard from "./pages/AdminDashbord";  
 import AuthRoutes from "./Routes/AuthRoutes";
+import FarmerDashboard from "./pages/FarmerDashboard";
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
 
           {/* Protected Routes */}
           <Route element={<AuthRoutes />}>
-            <Route path="/admin" element={<AdminDashboard />} /> 
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/farmer" element={<FarmerDashboard />} />  
           </Route>
 
           {/* SignIn SignUp */}

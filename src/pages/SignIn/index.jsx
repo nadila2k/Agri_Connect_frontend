@@ -46,7 +46,7 @@ const SignIn = () => {
       navigate("/admin");
       
     }else if(user.role === 1) {
-      navigate("/admin");
+      navigate("/farmer");
     }
   }, [user])
 

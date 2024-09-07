@@ -1,8 +1,8 @@
 import React from 'react';
 import './Styles_table.css';
-import { FaEdit } from 'react-icons/fa'; 
+import { FaEdit } from 'react-icons/fa';
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, onUpdate }) => {
     return (
         <table>
             <thead>
@@ -18,7 +18,10 @@ const Table = ({ columns, data }) => {
                         <td>{row.id}</td>
                         <td>{row.name}</td>
                         <td>
-                            <button className="crop-button update-crop-button">
+                            <button 
+                                className="crop-button update-crop-button"
+                                onClick={() => onUpdate(row)} // Pass the row data to the onUpdate function
+                            >
                                 <FaEdit className="button-icon" /> Update
                             </button>
                         </td>
@@ -30,3 +33,4 @@ const Table = ({ columns, data }) => {
 };
 
 export default Table;
+

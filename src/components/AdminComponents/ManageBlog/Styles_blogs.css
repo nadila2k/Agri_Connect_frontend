@@ -1,0 +1,219 @@
+/* Title Styling */
+.blog-manager h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 0;
+}
+
+/* Form Layout */
+.blog-manager form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.blog-manager label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.blog-manager input[type="text"],
+.blog-manager textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.blog-manager input[type="file"] {
+  padding: 5px;
+}
+
+/* Centered Add Blog Button with Green Background */
+.centered-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.add-blog-button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #45a049;
+  color: white;
+  display: flex;
+  align-items: center; 
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.add-blog-button:hover {
+  background-color: #007BB5;
+}
+
+/* Table Layout */
+.blog-manager table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.blog-manager th,
+.blog-manager td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.blog-manager th {
+  background-color: #f1f1f1;
+}
+
+.blog-manager img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Button Styling for Update and Delete */
+.blog-manager td button {
+  background-color: #ffc107; 
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.blog-manager td button:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+}
+
+.blog-manager td .delete-crop-button {
+  background-color: #dc3545; 
+}
+
+.blog-manager td .delete-crop-button:hover {
+  background-color: #c82333;
+}
+
+/* Popup Modal Styling */
+.popup-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px; 
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
+  max-width: 500px;
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out; 
+}
+
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #dc3545;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.add-blog-form div {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.add-blog-form label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.add-blog-form input,
+.add-blog-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+
+.submit-blog-button,
+.close-popup-button {
+  padding: 10px 20px;
+  border-radius: 30px; 
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-blog-button {
+  background-color: #007bff;
+  color: white;
+  
+}
+
+.submit-blog-button:hover {
+  background-color: #0056b3;
+}
+
+.close-popup-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.close-popup-button:hover {
+  background-color: #5a6268;
+}
+
+.submit-blog-button,
+.close-popup-button {
+  margin-right: 10px;
+}

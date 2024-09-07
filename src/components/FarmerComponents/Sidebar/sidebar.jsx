@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaSeedling, FaBlog, FaChartBar } from 'react-icons/fa';
-import { GiCorn } from 'react-icons/gi';
-import ManageCrops from '../ManageCrops/managecrops'; 
-import CropStatistics from '../CropStatics/cropstatistics';
-import BlogManager from '../ManageBlog/blogs';
-import './Styles_Sidebar.css';
+import { GiFarmTractor } from 'react-icons/gi';
+import { FaUserCircle } from 'react-icons/fa';
+import StartFarm from '../StartFarming/farm';
+import classes from "./Styles_Sidebar.module.css";
 
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -12,11 +10,9 @@ const Sidebar = () => {
   const sidebarRef = useRef(null);
 
   const tabs = [
-    { name: 'Analytics', icon: <FaChartBar /> },
-    { name: 'Manage Crops', icon: <FaSeedling />, content: <ManageCrops /> },
-    { name: 'Crop Statistics', icon: <GiCorn />, content:<CropStatistics/> },
-    { name: 'Edit Blogs', icon: <FaBlog />, content: < BlogManager/> },
-    
+    { name: 'Start Farming', icon: <GiFarmTractor />, content: <StartFarm /> },
+    { name: 'Manage Profile', icon: <FaUserCircle /> },
+    { name: 'Start Farming', icon: <GiFarmTractor />, content: <StartFarm /> },
   ];
 
   const toggleSidebar = (index) => {
@@ -38,20 +34,20 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className="dashboard-container">
-      <div ref={sidebarRef} className={`sidebar ${isExpanded ? 'expanded' : ''}`}>
+    <div className={classes.dashboardContainer}>
+      <div ref={sidebarRef} className={`${classes.sidebar} ${isExpanded ? classes.expanded : ''}`}>
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className="sidebar-tab"
+            className={classes.sidebarTab}
             onClick={() => toggleSidebar(index)}
           >
-            <div className="icon">{tab.icon}</div>
-            {isExpanded && <span className="label">{tab.name}</span>}
+            <div className={classes.icon}>{tab.icon}</div>
+            {isExpanded && <span className={classes.label}>{tab.name}</span>}
           </div>
         ))}
       </div>
-      <div className="content">
+      <div className={classes.content}>
         {activeTab !== null && tabs[activeTab].content}
       </div>
     </div>
@@ -59,3 +55,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
