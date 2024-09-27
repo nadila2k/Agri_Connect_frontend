@@ -40,6 +40,27 @@ apiClient.interceptors.response.use(
   }
 );
 
+// const apiHelper = async (method, requestOptions, thunkAPI = null) => {
+//   try {
+//     let response;
+//     if (method === "post" || method === "put" || method === "patch") {
+//       response = await apiClient[method](
+//         requestOptions.url,
+//         requestOptions.data
+//       );
+//     } else if (method === "get") {
+//       response = await apiClient[method](requestOptions.url);
+//     } else {
+//       throw new Error("Unsupported HTTP method");
+//     }
+//     return response;
+//   } catch (error) {
+//     if (thunkAPI) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//     return { error: error.message };
+//   }
+// };
 const apiHelper = async (method, requestOptions, thunkAPI = null) => {
   try {
     let response;
@@ -50,10 +71,12 @@ const apiHelper = async (method, requestOptions, thunkAPI = null) => {
       );
     } else if (method === "get") {
       response = await apiClient[method](requestOptions.url);
+    } else if (method === "delete") {
+      response = await apiClient[method](requestOptions.url);
     } else {
       throw new Error("Unsupported HTTP method");
     }
-    return response.data;
+    return response;
   } catch (error) {
     if (thunkAPI) {
       return thunkAPI.rejectWithValue(error.message);

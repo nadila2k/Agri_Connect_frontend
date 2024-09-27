@@ -29,7 +29,7 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate(); 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +47,10 @@ const SignIn = () => {
       
     }else if(user.role === 1) {
       navigate("/farmer");
+    }else if(user.role === 2) {
+      navigate("/FertilizerVender");
+    }else if(user.role === 3) {
+      navigate("/MachineryVendor");
     }
   }, [user])
 

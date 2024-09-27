@@ -28,9 +28,9 @@ const CropStatistics = () => {
         const cropsData = await apiHelper('get', { url: '/crops' });
         const statsData = await apiHelper('get', { url: '/cropsStatistic' });
         
-        setYears(yearsData);
-        setCrops(cropsData);
-        setStatistics(statsData);
+        setYears(yearsData.data);
+        setCrops(cropsData.data);
+        setStatistics(statsData.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -121,7 +121,7 @@ const CropStatistics = () => {
 
       // Refresh statistics list
       const statsData = await apiHelper('get', { url: '/cropsStatistic' });
-      setStatistics(statsData);
+      setStatistics(statsData.data);
     } catch (error) {
       console.error('Error submitting form:', error);
       setAlert({
@@ -155,7 +155,7 @@ const CropStatistics = () => {
 
       // Refresh statistics list
       const statsData = await apiHelper('get', { url: '/cropsStatistic' });
-      setStatistics(statsData);
+      setStatistics(statsData.data);
     } catch (error) {
       console.error('Error updating form:', error);
       setAlert({

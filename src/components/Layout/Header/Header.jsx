@@ -1,13 +1,45 @@
-import { NavLink } from "react-router-dom";
-import { FaHome, FaInfoCircle, FaBox, FaBlog, FaEnvelope, FaSignInAlt } from "react-icons/fa";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  FaHome,
+  FaInfoCircle,
+  FaBox,
+  FaBlog,
+  FaEnvelope,
+  FaSignInAlt,
+} from "react-icons/fa";
 import classes from "./Header.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  logOut,
+  selectIsAuthenticate,
+} from "../../../features/slices/authSlice";
+import { IconButton, Menu, MenuItem } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
+import { useState } from "react";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const isAuth = useSelector(selectIsAuthenticate);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate("/");
+  };
+
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>
-        AGRI HUB
-      </div>
+      <div className={classes.logo}>AGRI HUB</div>
       <nav>
         <ul className={classes.navLinks}>
           <li>
@@ -37,11 +69,47 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <NavLink to="/sign-in" className={`${classes.loginButton} ${classes.link}`}>
-        <FaSignInAlt className={classes.icon} /> SignIn
-      </NavLink>
+      {isAuth ? (
+        <div>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleMenu}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem>User</MenuItem>
+            <MenuItem onClick={handleLogout}>LogOut</MenuItem>
+          </Menu>
+        </div>
+      ) : (
+        <NavLink
+          to="/sign-in"
+          className={`${classes.loginButton} ${classes.link}`}
+        >
+          <FaSignInAlt className={classes.icon} /> SignIn
+        </NavLink>
+      )}
     </header>
   );
-}
+};
 
 export default Header;

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { REQUEST_STATUS } from "../../constants/constants";
-import { signIn } from "../thunks/authThunk";
+import { signIn, signUp } from "../thunks/authThunk";
 
 const initialState = {
   isAuthenticate: false,
@@ -16,6 +16,12 @@ const authSlice = createSlice({
     resetState(state) {
       state.status = REQUEST_STATUS.IDLE;
     },
+    logOut(state) {
+      state.isAuthenticate = false;
+      state.user = {};
+      state.status = REQUEST_STATUS.IDLE;
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -25,7 +31,7 @@ const authSlice = createSlice({
       })
       .addCase(signIn.fulfilled, (state, action) => {
         state.status = REQUEST_STATUS.FULFILLED;
-        state.user = action.payload.user;
+        state.user = action.payload.data.user;
         state.isAuthenticate = true;
       })
       .addCase(signIn.rejected, (state, action) => {
@@ -33,9 +39,26 @@ const authSlice = createSlice({
         state.user = {};
         state.isAuthenticate = false;
         state.error = action.payload;
+      })
+      .addCase(signUp.pending, (state) => {
+        state.status = REQUEST_STATUS.PENDING;
+        state.error = null;
+      })
+      .addCase(signUp.fulfilled, (state, action) => {
+        state.status = REQUEST_STATUS.FULFILLED;
+        state.user = action.payload.data.user;
+        state.isAuthenticate = true;
+      })
+      .addCase(signUp.rejected, (state, action) => {
+        state.status = REQUEST_STATUS.REJECTED;
+        state.user = {};
+        state.isAuthenticate = false;
+        state.error = action.payload;
       });
   },
 });
+
+export const { resetState, logOut } = authSlice.actions;
 
 export const selectIsAuthenticate = (state) => state.auth.isAuthenticate;
 export const selectStatus = (state) => state.auth.status;

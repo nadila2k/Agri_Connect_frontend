@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaListAlt,FaUserCircle} from 'react-icons/fa';
+import { FiLogOut } from 'react-icons/fi';
 import Listings from '../MechineListings/listings';
+import ProfileManager from '../../Profile/profileManager';
+import LogoutButton from '../../Logout/logout';
 import './Styles_Sidebar.css';
 
 const Sidebar = () => {
@@ -10,8 +13,8 @@ const Sidebar = () => {
 
   const tabs = [
     { name: 'Manage Items', icon: <FaListAlt />, content:<Listings/>},
-    { name: 'Manage Profile', icon: < FaUserCircle /> },
-    
+    { name: 'Manage Profile', icon: <FaUserCircle />, content: <ProfileManager /> },
+    { name: 'Logout', icon: <FiLogOut />, content: < LogoutButton/> },
   ];
 
   const toggleSidebar = (index) => {

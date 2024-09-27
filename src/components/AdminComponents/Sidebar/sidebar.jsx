@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaSeedling, FaBlog, FaChartBar } from 'react-icons/fa';
 import { GiCorn } from 'react-icons/gi';
+import { FiLogOut } from 'react-icons/fi';
 import ManageCrops from '../ManageCrops/managecrops'; 
 import CropStatistics from '../CropStatics/cropstatistics';
 import BlogManager from '../ManageBlog/blogs';
+import LogoutButton from '../../Logout/logout';
 import './Styles_Sidebar.css';
 
 const Sidebar = () => {
@@ -16,6 +18,7 @@ const Sidebar = () => {
     { name: 'Manage Crops', icon: <FaSeedling />, content: <ManageCrops /> },
     { name: 'Crop Statistics', icon: <GiCorn />, content:<CropStatistics/> },
     { name: 'Edit Blogs', icon: <FaBlog />, content: < BlogManager/> },
+    { name: 'Logout', icon: <FiLogOut />, content: < LogoutButton/> },
     
   ];
 

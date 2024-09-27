@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GiFarmTractor } from 'react-icons/gi';
 import { FaUserCircle } from 'react-icons/fa';
+import { RiPriceTag3Line } from 'react-icons/ri';
+import { FiLogOut } from 'react-icons/fi';
 import StartFarm from '../StartFarming/farm';
+import Listings from '../Listings/listings';
+import ProfileManager from '../../Profile/profileManager';
+import LogoutButton from '../../Logout/logout';
 import classes from "./Styles_Sidebar.module.css";
 
 const Sidebar = () => {
@@ -10,9 +15,11 @@ const Sidebar = () => {
   const sidebarRef = useRef(null);
 
   const tabs = [
+   
+    { name: 'Manage Profile', icon: <FaUserCircle />, content: <ProfileManager /> },
     { name: 'Start Farming', icon: <GiFarmTractor />, content: <StartFarm /> },
-    { name: 'Manage Profile', icon: <FaUserCircle /> },
-    { name: 'Start Farming', icon: <GiFarmTractor />, content: <StartFarm /> },
+    { name: 'List Products', icon: <RiPriceTag3Line />, content: <Listings /> },
+    { name: 'Logout', icon: <FiLogOut />, content: < LogoutButton/> },
   ];
 
   const toggleSidebar = (index) => {

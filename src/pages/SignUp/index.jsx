@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -24,7 +24,11 @@ import {
   Person,
 } from "@mui/icons-material";
 import { districts } from "./../../config/data";
-import styled from 'styled-components';
+import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectUser } from "../../features/slices/authSlice";
+import { signUp } from "../../features/thunks/authThunk";
 
 // Define CSS for spinner animation
 const Spinner = styled.div`
@@ -36,12 +40,35 @@ const Spinner = styled.div`
   animation: spin 1s linear infinite;
 
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 
 const SignUp = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); 
+
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    if(user.role === 0) {
+      navigate("/admin");
+      
+    }else if(user.role === 1) {
+      navigate("/farmer");
+    }else if(user.role === 2) {
+      navigate("/FertilizerVender");
+    }else if(user.role === 3) {
+      navigate("/MachineryVendor");
+    }
+  }, [navigate, user])
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -56,7 +83,9 @@ const SignUp = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleSignUpSubmit = async () => {
+  const handleSignUpSubmit = async (event) => {
+    event.preventDefault();
+
     if (
       !firstName ||
       !lastName ||
@@ -74,9 +103,9 @@ const SignUp = () => {
       return;
     }
 
-    setLoading(true); // Start loading animation
+    setLoading(true);
 
-    const payload = {
+      const payload = {
       firstName,
       lastName,
       email,
@@ -86,41 +115,76 @@ const SignUp = () => {
       password,
     };
 
-    try {
-      console.log(payload);
-      const response = await fetch("http://localhost:5001/api/v1/auth/signUp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+    console.log("clicking");
 
-      const result = await response.json();
-
-      if (response.ok) {
-        setAlert({
-          open: true,
-          message: "Registration successful!",
-          severity: "success",
-        });
-      } else {
-        setAlert({
-          open: true,
-          message: result.message || "Registration failed",
-          severity: "error",
-        });
-      }
-    } catch (error) {
-      setAlert({
-        open: true,
-        message: "Network error. Please try again later.",
-        severity: "error",
-      });
-    } finally {
-      setLoading(false); // Stop loading animation
-    }
+    dispatch(signUp(payload));
   };
+
+  // const handleSignUpSubmit = async () => {
+  //   if (
+  //     !firstName ||
+  //     !lastName ||
+  //     !email ||
+  //     !district ||
+  //     !phoneNumber ||
+  //     !role ||
+  //     !password
+  //   ) {
+  //     setAlert({
+  //       open: true,
+  //       message: "Please fill in all required fields",
+  //       severity: "warning",
+  //     });
+  //     return;
+  //   }
+
+  //   setLoading(true); // Start loading animation
+
+  //   const payload = {
+  //     firstName,
+  //     lastName,
+  //     email,
+  //     district,
+  //     phoneNumber,
+  //     role,
+  //     password,
+  //   };
+
+  //   try {
+  //     console.log(payload);
+  //     const response = await fetch("http://localhost:5001/api/v1/auth/signUp", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(payload),
+  //     });
+
+  //     const result = await response.json();
+
+  //     if (response.ok) {
+  //       setAlert({
+  //         open: true,
+  //         message: "Registration successful!",
+  //         severity: "success",
+  //       });
+  //     } else {
+  //       setAlert({
+  //         open: true,
+  //         message: result.message || "Registration failed",
+  //         severity: "error",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     setAlert({
+  //       open: true,
+  //       message: "Network error. Please try again later.",
+  //       severity: "error",
+  //     });
+  //   } finally {
+  //     setLoading(false); // Stop loading animation
+  //   }
+  // };
 
   const handleCloseAlert = () => {
     setAlert({ open: false, message: "", severity: "" });
@@ -327,7 +391,13 @@ const SignUp = () => {
               <FormControlLabel
                 value="2"
                 control={<Radio style={{ color: "#3498db" }} />}
-                label="Vendor"
+                label="Fertilizer Vendor"
+                style={{ color: "#2c3e50" }}
+              />
+              <FormControlLabel
+                value="3"
+                control={<Radio style={{ color: "#3498db" }} />}
+                label="Machinery  Vendor"
                 style={{ color: "#2c3e50" }}
               />
             </RadioGroup>

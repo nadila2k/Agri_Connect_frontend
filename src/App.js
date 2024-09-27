@@ -10,7 +10,8 @@ import SignUp from "./pages/SignUp";
 import AdminDashboard from "./pages/AdminDashbord";  
 import AuthRoutes from "./Routes/AuthRoutes";
 import FarmerDashboard from "./pages/FarmerDashboard";
-
+import FertilizerDashboard from "./pages/FertilizerDashboard";
+import MachineryDashboard from "./pages/MachineDashbord";
 
 function App() {
   return (
@@ -27,7 +28,10 @@ function App() {
           {/* Protected Routes */}
           <Route element={<AuthRoutes />}>
             <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/farmer" element={<FarmerDashboard />} />  
+            <Route path="/farmer" element={<FarmerDashboard />} />
+            <Route path="/FertilizerVender" element={<FertilizerDashboard />} />
+            <Route path="/MachineryVendor" element={<MachineryDashboard />} />
+              
           </Route>
 
           {/* SignIn SignUp */}

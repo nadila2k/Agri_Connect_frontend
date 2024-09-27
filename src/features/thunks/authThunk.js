@@ -9,4 +9,12 @@ const signIn = createAsyncThunk("auth/signIn", async (user, thunkAPI) => {
   return apiHelper("post", requestOptions, thunkAPI);
 });
 
-export { signIn };
+const signUp = createAsyncThunk("auth/signUp", async (user, thunkAPI) => {
+  const requestOptions = {
+    url: `/auth/signUp`,
+    data: user,
+  };
+  return apiHelper("post", requestOptions, thunkAPI);
+});
+
+export { signIn, signUp };
