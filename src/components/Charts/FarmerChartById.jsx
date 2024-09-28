@@ -14,7 +14,7 @@ import { axisClasses } from "@mui/x-charts/ChartsAxis";
 import { useSelector } from "react-redux";
 import { selectUser } from "./../../features/slices/authSlice.js";
 
-const FarmerChart = () => {
+const FarmerChartById = () => {
   const [barNames, setBarNames] = useState([]);
   const [barValues, setBarValues] = useState([]);
   const [years, setYears] = useState([]); // Holds the list of years from the API
@@ -55,9 +55,9 @@ const FarmerChart = () => {
             const labelsArr = [];
             const valuesArr = [];
             data?.forEach((element) => {
-              labelsArr.push(String(element.month));
+              labelsArr.push(String(element.crops_name));
               valuesArr.push(
-                parseFloat(element.farmer_monthly_production / 12).toFixed(2)
+                parseFloat(element.farmer_monthly_production).toFixed(2)
               );
             });
             setBarNames(labelsArr);
@@ -125,4 +125,4 @@ const FarmerChart = () => {
   );
 };
 
-export default FarmerChart;
+export default FarmerChartById;

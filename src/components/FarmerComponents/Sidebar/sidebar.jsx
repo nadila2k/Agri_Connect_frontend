@@ -8,6 +8,7 @@ import Listings from '../Listings/listings';
 import ProfileManager from '../../Profile/profileManager';
 import LogoutButton from '../../Logout/logout';
 import classes from "./Styles_Sidebar.module.css";
+import FarmerChartById from '../../Charts/FarmerChartById';
 
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -19,6 +20,7 @@ const Sidebar = () => {
     { name: 'Manage Profile', icon: <FaUserCircle />, content: <ProfileManager /> },
     { name: 'Start Farming', icon: <GiFarmTractor />, content: <StartFarm /> },
     { name: 'List Products', icon: <RiPriceTag3Line />, content: <Listings /> },
+    { name: 'Analyze Bar', icon: <FiLogOut />, content: <FarmerChartById /> },
     { name: 'Logout', icon: <FiLogOut />, content: < LogoutButton/> },
   ];
 
