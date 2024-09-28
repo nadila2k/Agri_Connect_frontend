@@ -75,7 +75,7 @@ const FarmerChart = () => {
             data?.forEach((element) => {
               labelsArr.push(String(element.month));
               valuesArr.push(
-                parseFloat(element.farmer_monthly_production / 12).toFixed(2)
+                parseFloat(element.farmer_monthly_production).toFixed(2)
               );
             });
             setBarNames(labelsArr);
@@ -98,7 +98,7 @@ const FarmerChart = () => {
     ],
     sx: {
       [`.${axisClasses.left} .${axisClasses.label}`]: {
-        transform: "translate(-30px, 0)",
+        transform: "translate(-40px, 0)",
       },
     },
   };

@@ -67,9 +67,9 @@ const FarmerChart = () => {
             const labelsArr = [];
             const valuesArr = [];
             data?.forEach((element) => {
-              labelsArr.push(String(element.month));
+              labelsArr.push(String(element.crops_name));
               valuesArr.push(
-                parseFloat(element.farmer_monthly_production / 12).toFixed(2)
+                parseFloat(element.farmer_monthly_production).toFixed(2)
               );
             });
             setBarNames(labelsArr);
